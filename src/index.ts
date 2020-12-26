@@ -1,32 +1,5 @@
 import { Instructions, Instruction, InstructionType, Renderer } from './types';
 
-const loadImage = (image: HTMLImageElement): Promise<void> => {
-  return new Promise((resolve, reject) => {
-    image.onload = d => {
-      resolve();
-    };
-
-    image.onerror = err => {
-      reject(err);
-    };
-  });
-};
-
-let textureMap = {};
-
-const textureFromImageUrl = (imageUrl: string): number => {
-  const img = new Image();
-  img.src = imageUrl;
-
-  loadImage(img);
-
-  return 0;
-};
-
-const textureFromImage = (image: HTMLImageElement): number => {
-  return 0;
-};
-
 const create = (width: number, height: number): Renderer => {
   const canvasElement = document.createElement('canvas');
   canvasElement.width = width;
