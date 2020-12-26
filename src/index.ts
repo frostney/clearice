@@ -1,8 +1,4 @@
-import { Instructions, Instruction, InstructionType } from './types';
-
-interface Renderer {
-  render(iterations: Instructions): void;
-}
+import { Instructions, Instruction, InstructionType, Renderer } from './types';
 
 const create = (width: number, height: number): Renderer => {
   const canvasElement = document.createElement('canvas');
@@ -17,28 +13,19 @@ const create = (width: number, height: number): Renderer => {
 };
 
 const render = (context: CanvasRenderingContext2D) => (
-  iterations: Instructions = []
+  instructions: Instructions = []
 ) => {
-  console.log(context);
-
   context.clearRect(0, 0, 0, 0);
 
-  iterations.forEach((iter: Instruction) => {
-    switch (iter.type) {
+  instructions.forEach((inst: Instruction) => {
+    switch (inst.type) {
       case InstructionType.DRAW_RECT: {
-        const drIter = iter;
-
-        context.fillStyle = drIter.data.color;
-        context.fillRect(
-          drIter.data.x,
-          drIter.data.y,
-          drIter.data.width,
-          drIter.data.height
-        );
+        context.fillStyle = inst.data.color;
+        context.fillRect(inst.data.x, inst.data.y, inst.data.w, inst.data.h);
         break;
       }
       case InstructionType.DRAW_IMAGE: {
-        context.drawImage(iter.data.image, iter.data.x, iter.data.y);
+        context.drawImage(inst.data.image, inst.data.x, inst.data.y);
         break;
       }
       default:

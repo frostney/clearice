@@ -1,3 +1,5 @@
+import { Position, Dimension } from './Primitives';
+
 export type Instructions = SpecificInstruction[];
 
 export enum InstructionType {
@@ -14,25 +16,24 @@ export interface Instruction {
   };
 }
 
+export type RectData = Position &
+  Dimension & {
+    color: string;
+  };
+
 export interface DrawRectInstruction extends Instruction {
   type: InstructionType.DRAW_RECT;
-  data: {
-    color: string;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  };
+  data: RectData;
 }
 
 export interface DrawImageInstruction extends Instruction {
   type: InstructionType.DRAW_IMAGE;
   data: {
-    image: ImageBitmap;
+    image: HTMLImageElement;
     x: number;
     y: number;
-    width?: number;
-    height?: number;
+    w?: number;
+    h?: number;
   };
 }
 
