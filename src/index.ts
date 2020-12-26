@@ -1,16 +1,4 @@
-import {
-  Instructions,
-  Instruction,
-  InstructionType,
-  RectData,
-  Renderer,
-} from './types';
-import {
-  DEFAULT_X,
-  DEFAULT_Y,
-  DEFAULT_WIDTH,
-  DEFAULT_HEIGHT,
-} from './constants';
+import { Instructions, Instruction, InstructionType, Renderer } from './types';
 
 const loadImage = (image: HTMLImageElement): Promise<void> => {
   return new Promise((resolve, reject) => {
@@ -72,16 +60,5 @@ const render = (context: CanvasRenderingContext2D) => (
     }
   });
 };
-
-export const Rect = ({
-  x = DEFAULT_X,
-  y = DEFAULT_Y,
-  w = DEFAULT_WIDTH,
-  h = DEFAULT_HEIGHT,
-  color,
-}: RectData) => ({
-  type: InstructionType.DRAW_RECT,
-  data: { x, y, w, h, color },
-});
 
 export default create;
