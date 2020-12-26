@@ -1,14 +1,16 @@
-import { Instructions, Instruction, InstructionType, RectData } from './types';
+import {
+  Instructions,
+  Instruction,
+  InstructionType,
+  RectData,
+  Renderer,
+} from './types';
 import {
   DEFAULT_X,
   DEFAULT_Y,
   DEFAULT_WIDTH,
   DEFAULT_HEIGHT,
 } from './constants';
-
-interface Renderer {
-  render(instructions: Instructions): void;
-}
 
 const loadImage = (image: HTMLImageElement): Promise<void> => {
   return new Promise((resolve, reject) => {

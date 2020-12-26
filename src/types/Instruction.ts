@@ -1,3 +1,5 @@
+import { Position, Dimension } from './Primitives';
+
 export type Instructions = SpecificInstruction[];
 
 export enum InstructionType {
@@ -13,17 +15,6 @@ export interface Instruction {
     [key: string]: any;
   };
 }
-
-type Position = {
-  x: number;
-  y: number;
-  z?: number;
-};
-
-type Dimension = {
-  w: number;
-  h: number;
-};
 
 export type RectData = Position &
   Dimension & {
