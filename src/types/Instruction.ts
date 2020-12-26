@@ -21,9 +21,23 @@ export type RectData = Position &
     color: string;
   };
 
+export type PointData = Position & {
+  color: string;
+};
+
+export type CircleData = Position &
+  Dimension & {
+    color: string;
+  };
+
 export interface DrawRectInstruction extends Instruction {
   type: InstructionType.DRAW_RECT;
   data: RectData;
+}
+
+export interface DrawCircleInstruction extends Instruction {
+  type: InstructionType.DRAW_CIRCLE;
+  data: CircleData;
 }
 
 export interface DrawImageInstruction extends Instruction {
@@ -39,11 +53,7 @@ export interface DrawImageInstruction extends Instruction {
 
 export interface DrawPointInstruction extends Instruction {
   type: InstructionType.DRAW_POINT;
-  data: {
-    color: string;
-    x: number;
-    y: number;
-  };
+  data: PointData;
 }
 
 export type SpecificInstruction =
