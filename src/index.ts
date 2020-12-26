@@ -10,4 +10,5 @@ const create = (width: number, height: number): Renderer => {
   return { render: render(context!) };
 };
 
+export * from './Shapes';
 export default create;

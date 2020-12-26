@@ -1,7 +1,2 @@
-export { Renderer } from './Renderer';
-export {
-  Instructions,
-  Instruction,
-  InstructionType,
-  RectData,
-} from './Instruction';
+export * from './Renderer';
+export * from './Instruction';

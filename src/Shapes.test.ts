@@ -1,4 +1,4 @@
-import { Rect } from './Rect';
+import { Rect } from './Shapes';
 import { InstructionType } from './types';
 
 describe('Given a Rect function', () => {
