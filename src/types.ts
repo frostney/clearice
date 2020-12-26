@@ -14,25 +14,35 @@ export interface Instruction {
   };
 }
 
+type Position = {
+  x: number;
+  y: number;
+  z?: number;
+};
+
+type Dimension = {
+  w: number;
+  h: number;
+};
+
+export type RectData = Position &
+  Dimension & {
+    color: string;
+  };
+
 export interface DrawRectInstruction extends Instruction {
   type: InstructionType.DRAW_RECT;
-  data: {
-    color: string;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  };
+  data: RectData;
 }
 
 export interface DrawImageInstruction extends Instruction {
   type: InstructionType.DRAW_IMAGE;
   data: {
-    image: ImageBitmap;
+    image: HTMLImageElement;
     x: number;
     y: number;
-    width?: number;
-    height?: number;
+    w?: number;
+    h?: number;
   };
 }
 

@@ -1,4 +1,4 @@
-import create from '../.';
+import create, { Rect } from '../.';
 
 import hero from './hero_front.png';
 
@@ -9,26 +9,20 @@ const renderer = create(200, 200);
 
 img.onload = () => {
   renderer.render([
-    {
-      type: 'DRAW_RECT',
-      data: {
-        color: 'red',
-        x: 10,
-        y: 10,
-        width: 100,
-        height: 100,
-      },
-    },
-    {
-      type: 'DRAW_RECT',
-      data: {
-        color: 'blue',
-        x: 50,
-        y: 50,
-        width: 100,
-        height: 100,
-      },
-    },
+    Rect({
+      color: 'red',
+      x: 10,
+      y: 10,
+      w: 100,
+      h: 100,
+    }),
+    Rect({
+      color: 'blue',
+      x: 50,
+      y: 50,
+      w: 100,
+      h: 100,
+    }),
     {
       type: 'DRAW_IMAGE',
       data: {

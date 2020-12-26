@@ -1,8 +1,41 @@
-import { Instructions, Instruction, InstructionType } from './types';
+import { Instructions, Instruction, InstructionType, RectData } from './types';
+import {
+  DEFAULT_X,
+  DEFAULT_Y,
+  DEFAULT_WIDTH,
+  DEFAULT_HEIGHT,
+} from './constants';
 
 interface Renderer {
-  render(iterations: Instructions): void;
+  render(instructions: Instructions): void;
 }
+
+const loadImage = (image: HTMLImageElement): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    image.onload = d => {
+      resolve();
+    };
+
+    image.onerror = err => {
+      reject(err);
+    };
+  });
+};
+
+let textureMap = {};
+
+const textureFromImageUrl = (imageUrl: string): number => {
+  const img = new Image();
+  img.src = imageUrl;
+
+  loadImage(img);
+
+  return 0;
+};
+
+const textureFromImage = (image: HTMLImageElement): number => {
+  return 0;
+};
 
 const create = (width: number, height: number): Renderer => {
   const canvasElement = document.createElement('canvas');
@@ -17,28 +50,19 @@ const create = (width: number, height: number): Renderer => {
 };
 
 const render = (context: CanvasRenderingContext2D) => (
-  iterations: Instructions = []
+  instructions: Instructions = []
 ) => {
-  console.log(context);
-
   context.clearRect(0, 0, 0, 0);
 
-  iterations.forEach((iter: Instruction) => {
-    switch (iter.type) {
+  instructions.forEach((inst: Instruction) => {
+    switch (inst.type) {
       case InstructionType.DRAW_RECT: {
-        const drIter = iter;
-
-        context.fillStyle = drIter.data.color;
-        context.fillRect(
-          drIter.data.x,
-          drIter.data.y,
-          drIter.data.width,
-          drIter.data.height
-        );
+        context.fillStyle = inst.data.color;
+        context.fillRect(inst.data.x, inst.data.y, inst.data.w, inst.data.h);
         break;
       }
       case InstructionType.DRAW_IMAGE: {
-        context.drawImage(iter.data.image, iter.data.x, iter.data.y);
+        context.drawImage(inst.data.image, inst.data.x, inst.data.y);
         break;
       }
       default:
@@ -46,5 +70,16 @@ const render = (context: CanvasRenderingContext2D) => (
     }
   });
 };
+
+export const Rect = ({
+  x = DEFAULT_X,
+  y = DEFAULT_Y,
+  w = DEFAULT_WIDTH,
+  h = DEFAULT_HEIGHT,
+  color,
+}: RectData) => ({
+  type: InstructionType.DRAW_RECT,
+  data: { x, y, w, h, color },
+});
 
 export default create;
