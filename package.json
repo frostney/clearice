@@ -36,16 +36,19 @@
   "size-limit": [
     {
       "path": "dist/clearice.cjs.production.min.js",
-      "limit": "2 KB"
+      "limit": "1 KB"
     },
     {
       "path": "dist/clearice.esm.js",
-      "limit": "2 KB"
+      "limit": "1 KB"
     }
   ],
   "devDependencies": {
     "@size-limit/preset-small-lib": "^4.9.1",
     "@types/jest": "^26.0.19",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
+    "@typescript-eslint/parser": "^4.11.0",
+    "eslint-config-react-app": "^6.0.0",
     "husky": "^4.3.6",
     "size-limit": "^4.9.1",
     "tsdx": "^0.14.1",
