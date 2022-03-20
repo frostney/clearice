@@ -4330,7 +4330,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^5.15.0
     "@typescript-eslint/parser": ^5.15.0
     eslint-config-react-app: ^7.0.0
-    husky: ^7.0.4
+    husky: latest
     size-limit: ^7.0.8
     tsdx: ^0.14.1
     tslib: ^2.3.1
@@ -6605,7 +6605,7 @@ fsevents@^2.1.2:
   languageName: node
   linkType: hard
 
-"husky@npm:^7.0.4":
+"husky@npm:latest":
   version: 7.0.4
   resolution: "husky@npm:7.0.4"
   bin:

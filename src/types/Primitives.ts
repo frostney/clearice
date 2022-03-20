@@ -4,7 +4,16 @@ export type Position = {
   z?: number;
 };
 
+export type Rotation = {
+  angle: number;
+};
+
 export type Dimension = {
   w: number;
   h: number;
+};
+
+export type OptionalDimension = {
+  w?: number;
+  h?: number;
 };

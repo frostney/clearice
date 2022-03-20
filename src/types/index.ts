@@ -1,2 +1,2 @@
-export * from './Renderer';
 export * from './Instruction';
+export * from './Middleware';

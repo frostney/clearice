@@ -1,12 +1,12 @@
-import { Position, Dimension } from './Primitives';
+import { Position, Dimension, OptionalDimension, Rotation } from './Primitives';
 
 export type Instructions = SpecificInstruction[];
 
 export enum InstructionType {
-  DRAW_RECT = 'DRAW_RECT',
-  DRAW_IMAGE = 'DRAW_IMAGE',
-  DRAW_POINT = 'DRAW_POINT',
-  DRAW_CIRCLE = 'DRAW_CIRCLE',
+  RECT = 'RECT',
+  TEXTURE = 'TEXTURE',
+  POINT = 'POINT',
+  CIRCLE = 'CIRCLE',
 }
 
 export interface Instruction {
@@ -16,47 +16,54 @@ export interface Instruction {
   };
 }
 
-export type RectData = Position &
+type RectData = Position &
+  Rotation &
   Dimension & {
     color: string;
   };
 
-export type PointData = Position & {
+type PointData = Position & {
   color: string;
 };
 
-export type CircleData = Position &
+type CircleData = Position &
   Dimension & {
     color: string;
   };
 
+type TextureData = Position &
+  OptionalDimension & {
+    image: HTMLImageElement;
+    sx?: number;
+    sy?: number;
+    sw?: number;
+    sh?: number;
+  };
 export interface DrawRectInstruction extends Instruction {
-  type: InstructionType.DRAW_RECT;
+  type: InstructionType.RECT;
   data: RectData;
 }
 
 export interface DrawCircleInstruction extends Instruction {
-  type: InstructionType.DRAW_CIRCLE;
+  type: InstructionType.CIRCLE;
   data: CircleData;
 }
 
-export interface DrawImageInstruction extends Instruction {
-  type: InstructionType.DRAW_IMAGE;
-  data: {
-    image: HTMLImageElement;
-    x: number;
-    y: number;
-    w?: number;
-    h?: number;
-  };
+export interface DrawTextureInstruction extends Instruction {
+  type: InstructionType.TEXTURE;
+  data: TextureData;
 }
 
 export interface DrawPointInstruction extends Instruction {
-  type: InstructionType.DRAW_POINT;
+  type: InstructionType.POINT;
   data: PointData;
 }
 
 export type SpecificInstruction =
   | DrawRectInstruction
-  | DrawImageInstruction
+  | DrawTextureInstruction
   | DrawPointInstruction;
+
+export type ChildInstruction = SpecificInstruction & {
+  children: ChildInstruction[];
+};
